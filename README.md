@@ -72,24 +72,24 @@
 
 ### `search_listings`
 
-- **What it does:**
-- **Inputs:** <!-- name and type each: `max_price` (float), not "a price" -->
-- **Returns:**
-- **When it has nothing:**
+- **What it does:** Searches clothing listings based on a description, with optional size and maximum price filters.
+- **Inputs:** `description` (str), `size` (str | None), `max_price` (float | None).
+- **Returns:** A list of matching listing dictionaries, ordered by best match first. Each dictionary contains `id`, `title`, `description`, `category`, `style_tags`, `size`, `condition`, `price`, `colors`, `brand`, and `platform`.
+- **When it has nothing:** Returns an empty list `[]` if no listings match.
 
 ### `suggest_outfit`
 
-- **What it does:**
-- **Inputs:**
-- **Returns:**
-- **When it has nothing:**
+- **What it does:** Suggests one or two outfits by combining a thrifted clothing item with items from the user's wardrobe.
+- **Inputs:** `new_item` (dict), `wardrobe` (dict containing an `items` list).
+- **Returns:** A non-empty string containing outfit suggestions and styling advice.
+- **When it has nothing:** If the wardrobe is empty, returns general styling advice for the new item instead of an empty string or an error.
 
 ### `create_fit_card`
 
-- **What it does:**
-- **Inputs:**
-- **Returns:**
-- **When it has nothing:**
+- **What it does:** Generates a short, social-media-style caption for a suggested outfit and new clothing item.
+- **Inputs:** `outfit` (str), `new_item` (dict).
+- **Returns:** A string containing a 2–4 sentence caption mentioning the item, its price, platform, and overall style.
+- **When it has nothing:** Returns a descriptive message if `outfit` is empty or contains only whitespace.
 
 ---
 
@@ -106,7 +106,8 @@
      The grader checks your code against what you claim here, so the file and
      function have to be real. -->
 
-**Branch rule:**
+**Branch rule:** 
+If `search_listings` returns an empty list, add a message to the session explaining that no matching listings were found and stop. Otherwise, take the first listing and pass it to `suggest_outfit`. If an outfit is generated, pass it along with the selected listing to `create_fit_card`.
 
 **Where it lives:** `agent.py::run_agent`
 
