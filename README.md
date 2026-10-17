@@ -37,16 +37,16 @@
 
 <!-- ═══════════════════════ UNIT 3 — THE BUILD ═══════════════════════ -->
 ## Fields in listing:
-  id             str
-  title          str 
-  description    str 
-  category       str 
-  style_tags     list  
-  size           str    
-  condition      str    
-  price          float 
-  colors         list   
-  brand          str    
+  id 
+  title 
+  description
+  category 
+  style_tags  
+  size  
+  condition  
+  price
+  colors     
+  brand   
   platform 
 
 
