@@ -28,6 +28,8 @@ tool calls and returns a fit card — in at least 4 of 5 tries.
 <!-- Why 4 of 5 and not 5 of 5? Something about your search, probably —
      "my search is a plain keyword match and some phrasings will miss" is a
      real answer. -->
+I chose 4 out of 5 because the search uses keyword matching, 
+so some queries may not find the correct listings even when they exist.
 
 ---
 
@@ -39,10 +41,15 @@ Given a query that matches no listings, the agent stops before calling
 **Why this target:**
 <!-- Why is 5 of 5 reasonable here when criterion 1 isn't? What's different
      about this path? -->
+I chose 5 out of 5 because the agent should always stop when no listings are 
+found. This does not depend on the model generating a response.
 
 ---
 
 ## 3. Something about state
+Given a query that matches at least one listing, the item stored in
+`session["selected_item"]` has the same `id` as the item passed to 
+`suggest_outfit` — in 5 of 5 tries.
 
 <!-- YOU WRITE THIS ONE.
 
@@ -54,16 +61,18 @@ Given a query that matches no listings, the agent stops before calling
      compares session["selected_item"] against what actually reached
      suggest_outfit is the shape you're after. -->
 
-
-
 **Why this target:**
+I chose 5 out of 5 because the agent should always pass the correct item 
+between tools. This is a state management task and should not depend on the 
+model's output.
 
-
+---
 
 ---
 
 ## 4. Something about the fit card
-
+Given a successful outfit suggestion, the fit card mentions the selected 
+item's price and platform and contains 2–4 sentences — in at least 4 of 5 tries.
 <!-- YOU WRITE THIS ONE.
 
      The fit card calls a model, so the same input can produce different words
@@ -76,15 +85,17 @@ Given a query that matches no listings, the agent stops before calling
      be turned into a number. -->
 
 
-
 **Why this target:**
-
-
+I chose 4 out of 5 because the fit card uses a language model, so its wording 
+may vary. However, it should still include the important item details and stay 
+within the expected length.
 
 ---
 
 ## 5. Your choice
-
+Given a matching listing and an empty wardrobe, `suggest_outfit` 
+returns non-empty general styling advice without raising an error — in at 
+least 4 of 5 tries.
 <!-- YOU WRITE THIS ONE TOO.
 
      Pick something you actually care about getting right. Speed, the empty
@@ -92,10 +103,10 @@ Given a query that matches no listings, the agent stops before calling
      search respects a price ceiling — anything, as long as it names a number
      or an observable outcome. -->
 
-
-
 **Why this target:**
-
+I chose 4 out of 5 because the agent should still provide useful 
+advice when the user has no saved clothing items, although the model may 
+occasionally produce an incomplete response.
 
 
 ---
