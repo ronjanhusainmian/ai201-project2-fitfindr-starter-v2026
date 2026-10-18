@@ -114,8 +114,9 @@ If `search_listings` returns an empty list, add a message to the session explain
 The agent uses regular expressions to extract the maximum price and size from the user's query. The remaining text is used as the clothing description for search_listings.
 
 **What moves through the session:** <!-- which fields, in what order -->
-The session stores the user's query, parsed description, size, and maximum price. The results from search_listings are saved in search_results, and the first matching item is stored in selected_item. This item and the user's wardrobe are passed to suggest_outfit, which saves its response in outfit_suggestion. Finally, create_fit_card uses the selected item and outfit suggestion to generate a caption, which is stored in fit_card. If no matching items are found, the session stores an error message and stops before calling the remaining tools.
 ---
+The session stores the user's query, parsed description, size, and maximum price. The results from search_listings are saved in search_results, and the first matching item is stored in selected_item. This item and the user's wardrobe are passed to suggest_outfit, which saves its response in outfit_suggestion. Finally, create_fit_card uses the selected item and outfit suggestion to generate a caption, which is stored in fit_card. If no matching items are found, the session stores an error message and stops before calling the remaining tools.
+
 
 ## Sample Run
 
@@ -162,14 +163,12 @@ Layer the playful, girly butterfly graphic with darker, tougher pieces for a bal
 $ python -c "from tools import search_listings; print(search_listings('graphic tee', max_price=30))"
 
 ```
-Output:
 [{'id': 'lst_002', 'title': 'Y2K Baby Tee — Butterfly Print', 'description': 'Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.', 'category': 'tops', 'style_tags': ['y2k', 'vintage', 'graphic tee', 'cottagecore'], 'size': 'S/M', 'condition': 'excellent', 'price': 18.0, 'colors': ['white', 'pink', 'purple'], 'brand': None, 'platform': 'depop'}, {'id': 'lst_006', 'title': 'Graphic Tee — 2003 Tour Bootleg Style', 'description': 'Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.', 'category': 'tops', 'style_tags': ['graphic tee', 'vintage', 'grunge', 'streetwear', 'band tee'], 'size': 'L', 'condition': 'good', 'price': 24.0, 'colors': ['black'], 'brand': None, 'platform': 'depop'}, {'id': 'lst_017', 'title': 'Mesh Long-Sleeve Top — Black', 'description': 'Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.', 'category': 'tops', 'style_tags': ['y2k', 'grunge', 'goth', 'layering'], 'size': 'S/M', 'condition': 'excellent', 'price': 15.0, 'colors': ['black'], 'brand': None, 'platform': 'depop'}, {'id': 'lst_033', 'title': 'Vintage Band Tee — Faded Grey', 'description': 'Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.', 'category': 'tops', 'style_tags': ['vintage', 'grunge', 'band tee', 'graphic tee', 'streetwear'], 'size': 'L', 'condition': 'fair', 'price': 19.0, 'colors': ['grey', 'charcoal'], 'brand': None, 'platform': 'depop'}, {'id': 'lst_015', 'title': 'Vintage Graphic Hoodie — Faded Black', 'description': 'Faded black pullover hoodie with barely-visible vintage graphic on the chest. Cozy interior. Some pilling but adds to the worn-in look.', 'category': 'tops', 'style_tags': ['vintage', 'grunge', 'graphic', 'streetwear'], 'size': 'L', 'condition': 'fair', 'price': 26.0, 'colors': ['black', 'charcoal'], 'brand': None, 'platform': 'depop'}]
 
 ```
 $ python -c "from tools import suggest_outfit; from utils.data_loader import get_example_wardrobe, load_listings; print(suggest_outfit(load_listings()[0], get_example_wardrobe()))"
 ```
 
-output:
 Here are two outfit ideas combining the **Vintage Levi's 501 Jeans (Medium Wash)** with pieces already in your wardrobe:
 
 ### Outfit 1: Casual & Classic Streetwear
@@ -192,7 +191,6 @@ $ python -c "from tools import create_fit_card; from utils.data_loader import lo
 
 ```
 
-output:
 Nothing beats the holy grail of denim, and these vintage Levi's 501 jeans are giving major effortless cool-girl energy. They have the most perfect medium wash and just the right amount of lived-in knee fading. Grab them on depop for just $38.00 and throw them on with fresh white sneakers for the ultimate off-duty uniform!
 
 
@@ -210,14 +208,17 @@ Nothing beats the holy grail of denim, and these vintage Levi's 501 jeans are gi
 **Moment 1**
 
 - *What I asked for:*
+I asked AI to explain the existing starter code in tools.py and data_loader.py so I could understand how the functions work and what I needed to implement.
 - *What came back:*
+AI explained the purpose of each function, its inputs and outputs, and how the tools access the listings and wardrobe data.
 - *What I changed:*
+I used the explanations to understand the code structure and fill in the missing implementations.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI to help me understand how to test each of the three tools individually using terminal commands.
+- *What came back:* AI explained the test commands, what outputs to expect, and how to check whether each tool was working correctly.
+- *What I changed:* I ran the tests myself, reviewed the outputs, and checked that the tools handled different inputs correctly, including empty results.
 
 <!-- ═══════════════════════ UNIT 4 — THE TEST ═══════════════════════
 
