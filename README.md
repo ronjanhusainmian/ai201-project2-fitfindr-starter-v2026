@@ -36,6 +36,14 @@
      ───────────────────────────────────────────────────────────────────────── -->
 
 <!-- ═══════════════════════ UNIT 3 — THE BUILD ═══════════════════════ -->
+
+## What This Does
+
+FitFindr helps users find secondhand clothing based on their preferences, including style, size, and budget. Users can search for clothing items and receive outfit suggestions using pieces they already own. The app also generates a short caption for the selected item. If no matching items are found, it suggests ways to adjust the search.
+<!-- Three or four sentences: what a user asks for, and what they get back. -->
+
+---
+
 ## Fields in listing:
   id 
   title 
@@ -48,15 +56,6 @@
   colors     
   brand   
   platform 
-
-
-## What This Does
-
-<!-- Three or four sentences: what a user asks for, and what they get back. -->
-
-
-
----
 
 ## Tool Inventory
 
@@ -112,9 +111,10 @@ If `search_listings` returns an empty list, add a message to the session explain
 **Where it lives:** `agent.py::run_agent`
 
 **How the query is parsed:** <!-- regex, string splitting, or asking the model — say which -->
+The agent uses regular expressions to extract the maximum price and size from the user's query. The remaining text is used as the clothing description for search_listings.
 
 **What moves through the session:** <!-- which fields, in what order -->
-
+The session stores the user's query, parsed description, size, and maximum price. The results from search_listings are saved in search_results, and the first matching item is stored in selected_item. This item and the user's wardrobe are passed to suggest_outfit, which saves its response in outfit_suggestion. Finally, create_fit_card uses the selected item and outfit suggestion to generate a caption, which is stored in fit_card. If no matching items are found, the session stores an error message and stops before calling the remaining tools.
 ---
 
 ## Sample Run
@@ -127,9 +127,34 @@ If `search_listings` returns an empty list, add a message to the session explain
 **One full query**
 
 ```
-$ python app.py ask '...'
+$ python app.py ask 'vintage graphic tee under $30'
 
 ```
+  Found:    Y2K Baby Tee — Butterfly Print — $18.0 on depop
+
+  Outfit:   Here are 2 outfit ideas combining the **Y2K Baby Tee with Butterfly Print** with items already in your wardrobe, leaning into its nostalgic early-2000s aesthetic:
+
+### Outfit 1: Classic Y2K Streetwear
+Pair the cropped, fitted nature of the baby tee with high-waisted, voluminous bottoms for that signature Y2K silhouette.
+* **Top:** Y2K Baby Tee — Butterfly Print (New item)
+* **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
+* **Shoes:** Chunky white sneakers (`w_007`)
+* **Accessories:** Black crossbody bag (`w_010`)
+* *Why it works:* The fitted crop of the baby tee balances out the baggy, high-waisted fit of the dark wash jeans, while the chunky sneakers and crossbody bag tie the streetwear look together.
+
+### Outfit 2: Edgy Contrast
+Layer the playful, girly butterfly graphic with darker, tougher pieces for a balanced grunge-meets-sweet look.
+* **Top:** Y2K Baby Tee — Butterfly Print (New item)
+* **Outerwear:** Vintage black denim jacket (`w_006`)
+* **Bottoms:** Wide-leg khaki trousers (`w_002`)
+* **Shoes:** Black combat boots (`w_008`)
+* **Accessories:** Black crossbody bag (`w_010`)
+* *Why it works:* The khaki trousers and combat boots ground the vibrant, feminine tee, and throwing the slightly cropped black denim jacket on top adds an effortlessly cool layer for cooler days.
+
+  Fit card: Channeling all the peak 2000s pop star energy with this Y2K Baby Tee — Butterfly Print! 🦋✨ Style it with baggy jeans and chunky sneakers for an effortless streetwear vibe, or toughen it up with combat boots. Grab this throwback gem on Depop right now for just $18.00 before it's gone!
+
+0 model calls this session, 2 served from cache
+
 
 **The three tools, tested one at a time**
 
