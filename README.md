@@ -506,25 +506,28 @@ I moved `search_listings` from a direct Python function call to an MCP tool regi
      `python run_eval.py --label after` -->
 
 **What I changed:**
+I added a second branch in `agent.py::run_agent` that checks whether `suggest_outfit` returns an empty response. If it does, the agent sets an error message and stops before calling `create_fit_card`.
 
 **Which failure it was meant to fix:**
+The change was meant to prevent the agent from generating a fit card when the outfit suggestion is empty or unusable. Previously, the agent would continue to the next tool without checking the result.
 
 ### Run Log — After
 
 | Criterion | Target | Try 1 | Try 2 | Try 3 | Try 4 | Try 5 | Verdict |
 |---|---|---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |  |  |
+| 1. matching query completes | 4/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 2. impossible query stops early | 5/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 3. selected item state | 5/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 4. fit card details | 4/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 5. empty wardrobe | 4/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+
 
 **Did it help, and how do I know:**
 
 <!-- If it made things worse, say that. Honestly reported, that earns full
      credit and is more interesting than one that worked. -->
 
-
+After making the change, I ran all five scenarios again, with five tries each and caching disabled. All five criteria were met, with 25 out of 25 successful tries, the same as before. This shows that the change did not break the existing functionality. However, the new branch was not triggered during these tests, so I cannot confirm from these results alone whether it handles an empty outfit suggestion correctly.
 
 ---
 

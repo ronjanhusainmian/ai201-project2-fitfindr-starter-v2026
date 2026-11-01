@@ -204,6 +204,14 @@ def run_agent(query: str, wardrobe: dict) -> dict:
                 },
                 returned=session["outfit_suggestion"]
             )
+            if not session["outfit_suggestion"] or not str(
+                session["outfit_suggestion"]
+            ).strip():
+                session["error"] = (
+                    "Could not generate an outfit suggestion. "
+                    "Please try again."
+                )
+                return session
             step = "card"
 
         elif step == "card":
