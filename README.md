@@ -302,13 +302,23 @@ that produced it:
 **Happy path**
 
 ```
-
+[1] search_listings
+    in:  dict with keys: description, size, max_price
+    out: 10 items: Y2K Baby Tee – Butterfly Print, Graphic Tee – 2003 Tour Bootleg Style, Vintage Band Tee – Faded Grey … +7 more
+[2] suggest_outfit
+    in:  dict with keys: selected_item, wardrobe
+    out: Here are 2 outfit ideas combining the Y2K Baby Tee with Butterfly Print with items already in your wardrobe…
+[3] create_fit_card
+    in:  dict with keys: outfit, item
+    out: Channeling all the peak 2000s pop star energy with this Y2K Baby Tee – Butterfly Print…
 ```
 
 **Empty search**
 
 ```
-
+[1] search_listings
+      in:  dict with keys: description, size, max_price
+      out: [] (empty)
 ```
 
 **On the MCP move:** <!-- what changed in your code, and whether anything
@@ -316,7 +326,7 @@ behaved differently afterwards. If the rewire didn't work, say exactly where it
 broke — the error text and the last thing that worked. That earns the point in
 full. -->
 
-
+I moved `search_listings` from a direct Python function call to an MCP tool registered in `mcp_server.py`. The agent now calls it through `mcp_client.call_tool()`. The tool still returns the same list of matching clothing items, so the rest of the agent works as before. I tested both a successful search and an empty search, and both behaved as expected.
 
 ---
 
