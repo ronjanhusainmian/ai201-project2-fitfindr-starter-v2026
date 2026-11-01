@@ -431,15 +431,25 @@ Trace:
      Look for a pattern. Three misses on the same tool is one problem, not
      three. -->
 
-| # | Criterion | Target | Verdict | How I decided |
-|---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+
+| Criterion | Target | Verdict | How I decided |
+|---|---|---|---|
+| 1 | 4/5 | MET (5/5) | All five runs completed all three tools and returned a fit card. |
+| 2 | 5/5 | MET (5/5) | All five runs stopped after an empty search without calling suggest_outfit. |
+| 3 | 5/5 | MET (5/5) | The selected item ID matched the ID passed to suggest_outfit in all five runs. |
+| 4 | 4/5 | MET (5/5) | All five fit cards included the item's price and platform and met the length requirement. |
+| 5 | 4/5 | MET (5/5) | All five runs returned styling advice with an empty wardrobe without crashing. |
+
 
 **Diagnoses**
+
+All five criteria met their targets, so there were no failures to diagnose in the recorded tests.
+
+The agent consistently handled the empty-search branch and passed the selected item between tools. The model-generated outputs also met the targets, although their wording varied between runs.
+
+Criteria 2 and 3 tested state management and branching, which should work consistently. Criteria 1, 4, and 5 allowed one failure because search matching and model-generated responses can be less predictable.
+
+One area for improvement is recording the item ID passed to `suggest_outfit` directly in every evaluation run, making the state criterion easier to verify.
 
 
 
