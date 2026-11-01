@@ -240,15 +240,246 @@ I used the explanations to understand the code structure and fill in the missing
 
 | Criterion | Target | Try 1 | Try 2 | Try 3 | Try 4 | Try 5 | Verdict |
 |---|---|---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |  |  |
+| 1. matching query completes | 4/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 2. impossible query stops early | 5/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 3. selected item state | 5/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 4. fit card details | 4/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
+| 5. empty wardrobe | 4/5 | PASS | PASS | PASS | PASS | PASS | MET (5/5) |
 
 **Real output from one try**, pasted as text, naming the file and function
 that produced it:
 
+```
+### matching query completes
+
+- Query: `vintage graphic tee under $30`
+- Wardrobe: example
+
+**Try 1**
+
+- stopped early: no
+- selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
+- search_results: 10
+
+Outfit suggestion:
+
+```
+Here are two outfit ideas combining the new **Y2K Baby Tee with Butterfly Print** with pieces already in your wardrobe, leaning into that effortless early-2000s streetwear aesthetic:
+
+### Outfit 1: High-Contrast Y2K Streetwear
+This look plays with proportions by pairing the fitted, cropped baby tee with voluminous bottoms. 
+* **Top:** Y2K Butterfly Baby Tee (New item)
+* **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
+* **Outerwear:** Vintage black denim jacket (`w_006`) — worn open to show off the graphic
+* **Shoes:** Chunky white sneakers (`w_007`)
+* **Accessories:** Black crossbody bag (`w_010`)
+
+### Outfit 2: Edgy Casual Grunge
+A slightly moodier take that uses black accents to make the butterfly graphic pop.
+* **Top:** Y2K Butterfly Baby Tee (New item)
+* **Bottoms:** Wide-leg khaki trousers (`w_002`) for a nice contrast of textures and tones
+* **Shoes:** Black combat boots (`w_008`) to ground the cropped silhouette
+* **Outerwear (Optional layer):** Black cropped zip hoodie (`w_005`) tied around the waist or worn unzipped
+```
+
+Fit card:
+
+```
+Obsessed with this Y2K Baby Tee with Butterfly Print! 🦋✨ I’m leaning all the way into that effortless early-2000s streetwear vibe by styling it with baggy denim and chunky sneakers. Grab it on depop right now for just $18.00 before I change my mind and keep it for myself!
+```
+
+Trace:
+
+```
+[1] search_listings
+      in:  dict with keys: description, size, max_price
+      out: 10 items: Y2K Baby Tee — Butterfly Print, Graphic Tee — 2003 Tour Bootleg Style, Vintage Band Tee — Faded Grey … +7 more
+[2] suggest_outfit
+      in:  dict with keys: selected_item, wardrobe
+      out: Here are two outfit ideas combining the new **Y2K Baby Tee with Butterfly Print** with pieces already in your …
+[3] create_fit_card
+      in:  dict with keys: outfit, item
+      out: Obsessed with this Y2K Baby Tee with Butterfly Print! 🦋✨ I’m leaning all the way into that effortless early-20…
+```
+
+
+### impossible query stops early
+
+- Query: `designer ballgown size XXS under $5`
+- Wardrobe: example
+
+**Try 1**
+
+- stopped early: yes — I couldn't find any matching clothing items. Try increasing your budget, choosing a different size, or using broader search terms.
+- selected_item: (none)
+- search_results: 0
+
+Trace:
+
+```
+[1] search_listings
+      in:  dict with keys: description, size, max_price
+      out: [] (empty)
+```
+
+
+
+### selected item state
+
+- Query: `vintage graphic tee under $30`
+- Wardrobe: example
+
+**Try 1**
+
+- stopped early: no
+- selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
+- search_results: 10
+
+Outfit suggestion:
+
+```
+Here are 2 outfit ideas combining the new **Y2K Baby Tee with Butterfly Print** with pieces already in your wardrobe:
+
+### Outfit 1: Effortless Y2K Streetwear
+This look leans into the 2000s aesthetic by pairing the fitted silhouette of the baby tee with relaxed, baggy bottoms for a classic high-low proportion play.
+
+*   **Top:** Y2K Baby Tee (New Item)
+*   **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
+*   **Shoes:** Chunky white sneakers (`w_007`)
+*   **Accessories:** Black crossbody bag (`w_010`)
+*   **Why it works:** The cropped, fitted nature of the baby tee balances out the voluminous, high-waisted baggy denim. Throwing on the chunky white sneakers and crossbody bag completes an easy, everyday 90s/00s streetwear look.
+
+---
+
+### Outfit 2: Edgy Casual Contrast
+This outfit mixes the playful, feminine butterfly graphic with darker, harder textures for a cool contrast.
+
+*   **Top:** Y2K Baby Tee (New Item)
+*   **Outerwear:** Vintage black denim jacket (`w_006`)
+*   **Bottoms:** Wide-leg khaki trousers (`w_002`)
+*   **Shoes:** Black combat boots (`w_008`)
+*   **Accessories:** Black crossbody bag (`w_010`)
+*   **Why it works:** The tan wide-leg trousers ground the outfit with earthy tones, while the black denim jacket and combat boots pull in grunge elements that edge up the sweet butterfly tee. The slightly cropped jacket also highlights the baby tee's cropped length.
+```
+
+Fit card:
+
+```
+Channeling my inner early 2000s pop star with this gorgeous Y2K Baby Tee with Butterfly Print! 🦋✨ Grab this fitted cutie on Depop right now for just $18.00. It gives off the ultimate effortless street-meets-grunge vibe, whether you style it with baggy denim or edgy combat boots. Run, don't walk!
+```
+
+Trace:
+
+```
+[1] search_listings
+      in:  dict with keys: description, size, max_price
+      out: 10 items: Y2K Baby Tee — Butterfly Print, Graphic Tee — 2003 Tour Bootleg Style, Vintage Band Tee — Faded Grey … +7 more
+[2] suggest_outfit
+      in:  dict with keys: selected_item, wardrobe
+      out: Here are 2 outfit ideas combining the new **Y2K Baby Tee with Butterfly Print** with pieces already in your wa…
+[3] create_fit_card
+      in:  dict with keys: outfit, item
+      out: Channeling my inner early 2000s pop star with this gorgeous Y2K Baby Tee with Butterfly Print! 🦋✨ Grab this fi…
+```
+
+
+
+### fit card details
+
+- Query: `vintage graphic tee under $30`
+- Wardrobe: example
+
+**Try 1**
+
+- stopped early: no
+- selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
+- search_results: 10
+
+Outfit suggestion:
+
+```
+Here are 2 outfit ideas combining the **Y2K Baby Tee with Butterfly Print** with items already in your wardrobe:
+
+### Outfit 1: Classic Y2K Streetwear
+* **Top:** Y2K Baby Tee — Butterfly Print
+* **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
+* **Outerwear:** Vintage black denim jacket (`w_006`)
+* **Shoes:** Chunky white sneakers (`w_007`)
+* **Accessories:** Black crossbody bag (`w_010`)
+
+**Why it works:** The fitted, cropped silhouette of the baby tee creates a great proportion balance when paired with high-waisted, baggy straight-leg jeans. Layering the slightly cropped vintage denim jacket on top leans fully into the early 2000s aesthetic, while the chunky sneakers and crossbody bag keep the look casual and cohesive.
+
+---
+
+### Outfit 2: Casual Contrast (Y2K Meets Earth Tones)
+* **Top:** Y2K Baby Tee — Butterfly Print
+* **Bottoms:** Wide-leg khaki trousers (`w_002`)
+* **Shoes:** Chunky white sneakers (`w_007`)
+* **Accessories:** Brown leather belt (`w_009`) + Black crossbody bag (`w_010`)
+
+**Why it works:** Pairing the graphic baby tee with tailored wide-leg khaki trousers gives you a cool high-low mix of streetwear and smart-casual elements. Tucking in the baby tee and wearing the brown leather belt highlights your waist against the looser trousers, and the white sneakers tie the whole relaxed outfit together.
+```
+
+Fit card:
+
+```
+Fluttering straight out of the 2000s and into your wardrobe! ✨ Grab this Y2K Baby Tee — Butterfly Print for just $18.00 over on depop. It gives off the ultimate effortless street-meets-chic vibe whether you're pairing it with baggy denim or cool khaki trousers. Grab it before it's gone! 🦋👖
+```
+
+Trace:
+
+```
+[1] search_listings
+      in:  dict with keys: description, size, max_price
+      out: 10 items: Y2K Baby Tee — Butterfly Print, Graphic Tee — 2003 Tour Bootleg Style, Vintage Band Tee — Faded Grey … +7 more
+[2] suggest_outfit
+      in:  dict with keys: selected_item, wardrobe
+      out: Here are 2 outfit ideas combining the **Y2K Baby Tee with Butterfly Print** with items already in your wardrob…
+[3] create_fit_card
+      in:  dict with keys: outfit, item
+      out: Fluttering straight out of the 2000s and into your wardrobe! ✨ Grab this Y2K Baby Tee — Butterfly Print for ju…
+```
+
+
+
+### empty wardrobe
+
+- Query: `vintage graphic tee under $30`
+- Wardrobe: empty
+
+**Try 1**
+
+- stopped early: no
+- selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
+- search_results: 10
+
+Outfit suggestion:
+
+```
+Here are two quick outfit ideas for your Y2K butterfly baby tee:
+
+*   **The Classic Brat-Pack Look:** Pair it with low-rise, wide-leg cargo pants in khaki or olive green, chunky platform flip-flops, and a small shoulder bag. 
+*   **The Sweet & Edgy Look:** Style it with a pleated black tennis skirt, knee-high white socks, and chunky platform sneakers (like Buffalo London or retro Pumas).
+```
+
+Fit card:
+
+```
+Channeling all the Y2K pop star energy with this adorable butterfly baby tee! 🦋✨ Grab this nostalgic little crop for just $18.00 over on my depop before it’s gone. It’s giving major brat-pack-meets-sweet-edgy vibes, perfect for living out your early 2000s daydream.
+```
+
+Trace:
+
+```
+[1] search_listings
+      in:  dict with keys: description, size, max_price
+      out: 10 items: Y2K Baby Tee — Butterfly Print, Graphic Tee — 2003 Tour Bootleg Style, Vintage Band Tee — Faded Grey … +7 more
+[2] suggest_outfit
+      in:  dict with keys: selected_item, wardrobe
+      out: Here are two quick outfit ideas for your Y2K butterfly baby tee:  *   **The Classic Brat-Pack Look:** Pair it …
+[3] create_fit_card
+      in:  dict with keys: outfit, item
+      out: Channeling all the Y2K pop star energy with this adorable butterfly baby tee! 🦋✨ Grab this nostalgic little cr…
 ```
 
 ```

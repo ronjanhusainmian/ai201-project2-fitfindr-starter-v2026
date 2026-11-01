@@ -42,6 +42,7 @@ def new_session(query: str, wardrobe: dict) -> dict:
         "parsed": {},                # description / size / max_price you pulled out of it
         "search_results": [],        # everything search_listings returned
         "selected_item": None,       # the one you chose — goes into suggest_outfit
+        "outfit_input_item_id": None,
         "wardrobe": wardrobe,        # the user's wardrobe
         "outfit_suggestion": None,   # what suggest_outfit returned
         "fit_card": None,            # what create_fit_card returned
@@ -189,6 +190,8 @@ def run_agent(query: str, wardrobe: dict) -> dict:
             step = "outfit"
 
         elif step == "outfit":
+            session["outfit_input_item_id"] = session["selected_item"]["id"]
+
             session["outfit_suggestion"] = suggest_outfit(
                 session["selected_item"],
                 session["wardrobe"]
