@@ -261,27 +261,6 @@ that produced it:
 - selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
 - search_results: 10
 
-Outfit suggestion:
-
-```
-Here are two outfit ideas combining the new **Y2K Baby Tee with Butterfly Print** with pieces already in your wardrobe, leaning into that effortless early-2000s streetwear aesthetic:
-
-### Outfit 1: High-Contrast Y2K Streetwear
-This look plays with proportions by pairing the fitted, cropped baby tee with voluminous bottoms. 
-* **Top:** Y2K Butterfly Baby Tee (New item)
-* **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
-* **Outerwear:** Vintage black denim jacket (`w_006`) — worn open to show off the graphic
-* **Shoes:** Chunky white sneakers (`w_007`)
-* **Accessories:** Black crossbody bag (`w_010`)
-
-### Outfit 2: Edgy Casual Grunge
-A slightly moodier take that uses black accents to make the butterfly graphic pop.
-* **Top:** Y2K Butterfly Baby Tee (New item)
-* **Bottoms:** Wide-leg khaki trousers (`w_002`) for a nice contrast of textures and tones
-* **Shoes:** Black combat boots (`w_008`) to ground the cropped silhouette
-* **Outerwear (Optional layer):** Black cropped zip hoodie (`w_005`) tied around the waist or worn unzipped
-```
-
 Fit card:
 
 ```
@@ -335,33 +314,6 @@ Trace:
 - selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
 - search_results: 10
 
-Outfit suggestion:
-
-```
-Here are 2 outfit ideas combining the new **Y2K Baby Tee with Butterfly Print** with pieces already in your wardrobe:
-
-### Outfit 1: Effortless Y2K Streetwear
-This look leans into the 2000s aesthetic by pairing the fitted silhouette of the baby tee with relaxed, baggy bottoms for a classic high-low proportion play.
-
-*   **Top:** Y2K Baby Tee (New Item)
-*   **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
-*   **Shoes:** Chunky white sneakers (`w_007`)
-*   **Accessories:** Black crossbody bag (`w_010`)
-*   **Why it works:** The cropped, fitted nature of the baby tee balances out the voluminous, high-waisted baggy denim. Throwing on the chunky white sneakers and crossbody bag completes an easy, everyday 90s/00s streetwear look.
-
----
-
-### Outfit 2: Edgy Casual Contrast
-This outfit mixes the playful, feminine butterfly graphic with darker, harder textures for a cool contrast.
-
-*   **Top:** Y2K Baby Tee (New Item)
-*   **Outerwear:** Vintage black denim jacket (`w_006`)
-*   **Bottoms:** Wide-leg khaki trousers (`w_002`)
-*   **Shoes:** Black combat boots (`w_008`)
-*   **Accessories:** Black crossbody bag (`w_010`)
-*   **Why it works:** The tan wide-leg trousers ground the outfit with earthy tones, while the black denim jacket and combat boots pull in grunge elements that edge up the sweet butterfly tee. The slightly cropped jacket also highlights the baby tee's cropped length.
-```
-
 Fit card:
 
 ```
@@ -394,31 +346,6 @@ Trace:
 - stopped early: no
 - selected_item: Y2K Baby Tee — Butterfly Print ($18.0, depop)
 - search_results: 10
-
-Outfit suggestion:
-
-```
-Here are 2 outfit ideas combining the **Y2K Baby Tee with Butterfly Print** with items already in your wardrobe:
-
-### Outfit 1: Classic Y2K Streetwear
-* **Top:** Y2K Baby Tee — Butterfly Print
-* **Bottoms:** Baggy straight-leg jeans, dark wash (`w_001`)
-* **Outerwear:** Vintage black denim jacket (`w_006`)
-* **Shoes:** Chunky white sneakers (`w_007`)
-* **Accessories:** Black crossbody bag (`w_010`)
-
-**Why it works:** The fitted, cropped silhouette of the baby tee creates a great proportion balance when paired with high-waisted, baggy straight-leg jeans. Layering the slightly cropped vintage denim jacket on top leans fully into the early 2000s aesthetic, while the chunky sneakers and crossbody bag keep the look casual and cohesive.
-
----
-
-### Outfit 2: Casual Contrast (Y2K Meets Earth Tones)
-* **Top:** Y2K Baby Tee — Butterfly Print
-* **Bottoms:** Wide-leg khaki trousers (`w_002`)
-* **Shoes:** Chunky white sneakers (`w_007`)
-* **Accessories:** Brown leather belt (`w_009`) + Black crossbody bag (`w_010`)
-
-**Why it works:** Pairing the graphic baby tee with tailored wide-leg khaki trousers gives you a cool high-low mix of streetwear and smart-casual elements. Tucking in the baby tee and wearing the brown leather belt highlights your waist against the looser trousers, and the white sneakers tie the whole relaxed outfit together.
-```
 
 Fit card:
 
