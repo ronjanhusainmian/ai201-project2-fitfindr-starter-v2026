@@ -220,6 +220,13 @@ I used the explanations to understand the code structure and fill in the missing
 - *What came back:* AI explained the test commands, what outputs to expect, and how to check whether each tool was working correctly.
 - *What I changed:* I ran the tests myself, reviewed the outputs, and checked that the tools handled different inputs correctly, including empty results.
 
+
+**Moment 3**
+
+- *What I asked for:* I asked AI to help me understand the agent's planning loop in agent.py, how session state is passed between tools, and how the evaluation process works.
+- *What came back:* AI explained how the agent chooses which tool to call next, how the session stores results, and how run_eval.py tests the five acceptance criteria.
+- *What I changed:* I used these explanations to understand the code, add an error-handling branch for empty outfit suggestions, and review the test results before and after the change.
+
 <!-- ═══════════════════════ UNIT 4 — THE TEST ═══════════════════════
 
      Don't fill these in during unit 3.
@@ -537,7 +544,7 @@ After making the change, I ran all five scenarios again, with five tries each an
      you did. "I ran out of time" is fine if it's true. Pretending nothing is
      left is not. -->
 
-
+The agent met all five acceptance criteria in the initial tests, so there were no remaining failures against those targets. However, the tests only covered a limited set of queries and wardrobe inputs. The agent may still struggle with more complicated searches or unexpected inputs. I would improve this by testing a wider range of queries and adding more error handling. I stopped here because the required criteria were met and I had completed the improvement and testing process.
 
 <!-- ═════════════════════════════════════════════════════════════════════
 
